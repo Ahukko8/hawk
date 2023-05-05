@@ -1,6 +1,8 @@
 <script>
 	import { Howl, Howler } from "howler";
 	import Segment from "./Segment.svelte";
+	let sprites;
+	let sound;
 	let segments = [
 		{
 			start: 0,
@@ -27,8 +29,15 @@
 			caption: "They use it to open the door of Maslahah for everything",
 		},
 	];
-	const sound = new Howl({
+
+	$: sprites = segments.reduce((spr, segment, index) => {
+		spr[`segment${index}`] = [segment.start * 1000, segment.end * 1000];
+		return spr;
+	}, {});
+
+	$: sound = new Howl({
 		src: ["/hudhaybiyya.mp3"],
+		sprite: sprites,
 	});
 
 	let playAudioButtonText = "Play Audio";
@@ -45,8 +54,8 @@
 
 	function playSegment(event) {
 		console.log(arguments);
-		sound.seek(event.detail.startTime);
-		sound.play();
+		// sound.seek(event.detail.startTime);
+		sound.play(event.detail.segmentSprite);
 	}
 
 	function addSegment() {
@@ -58,6 +67,8 @@
 		segments.push(newSegment);
 		segments = segments;
 	}
+
+	function generateSegments() {}
 </script>
 
 <div class="container">
@@ -66,12 +77,13 @@
 			>{playAudioButtonText}</button
 		>
 	</div>
-	{#each segments as segment}
+	{#each segments as segment, i}
 		<Segment
 			caption={segment.caption}
 			on:playaudio={playSegment}
 			startTime={segment.start}
 			endTime={segment.end}
+			segmentSprite={"segment"+i}
 		/>
 	{/each}
 

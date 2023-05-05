@@ -3,6 +3,8 @@
     export let caption;
     export let startTime;
     export let endTime;
+    export let segmentSprite;
+
     function formatTime(seconds) {
         const milliSeconds = Math.floor(1000 * (seconds - Math.floor(seconds)));
         let hours = seconds / (60 * 60);
@@ -28,6 +30,7 @@
     function play() {
         dispatch("playaudio", {
             startTime: startTime,
+            segmentSprite: segmentSprite,
         });
     }
 </script>
