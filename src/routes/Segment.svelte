@@ -4,6 +4,7 @@
     export let startTime;
     export let endTime;
     export let segmentSprite;
+    export let segmentIndex;
 
     function formatTime(seconds) {
         const milliSeconds = Math.floor(1000 * (seconds - Math.floor(seconds)));
@@ -33,19 +34,44 @@
             segmentSprite: segmentSprite,
         });
     }
+
+    function adjustTime(value, position) {
+        dispatch("adjustTime", {
+            position: position,
+            value: value,
+            segmentSprite: segmentSprite,
+            segmentIndex: segmentIndex,
+        });
+    }
 </script>
 
 <div class="segment">
     <div class="row">
         <div class="col">
             <span>
-                <button type="button" class="btn btn-success btn-sm">-</button>
+                <button
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    on:click={() => adjustTime(-0.5, "start")}>-</button
+                >
                 <span>{formatTime(startTime)}</span>
-                <button type="button" class="btn btn-success btn-sm">+</button>
+                <button
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    on:click={() => adjustTime(0.5, "start")}>+</button
+                >
                 <span>-</span>
-                <button type="button" class="btn btn-success btn-sm">-</button>
+                <button
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    on:click={() => adjustTime(-0.5, "end")}>-</button
+                >
                 <span>{formatTime(endTime)}</span>
-                <button type="button" class="btn btn-success btn-sm">+</button>
+                <button
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    on:click={() => adjustTime(0.5, "end")}>+</button
+                >
             </span>
         </div>
     </div>

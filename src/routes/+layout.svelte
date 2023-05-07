@@ -30,6 +30,28 @@
 		},
 	];
 
+	function adjustTime(event) {
+		console.log(event);
+		const value = event.detail.value;
+		const position = event.detail.position;
+		const segmentIndex = event.detail.segmentIndex;
+		let updatedValue = segments[segmentIndex][position] + value;
+		let updatedStart =
+			position == "start" ? updatedValue : segments[segmentIndex].start;
+		let updatedEnd =
+			position == "end" ? updatedValue : segments[segmentIndex].end;
+		if (updatedValue < 0) {
+			updatedValue = 0;
+		}
+
+		if (updatedStart >= updatedEnd) {
+			return;
+		}
+
+		segments[segmentIndex][position] = updatedValue;
+		segments = segments;
+	}
+
 	$: sprites = segments.reduce((spr, segment, index) => {
 		spr[`segment${index}`] = [segment.start * 1000, segment.end * 1000];
 		return spr;
@@ -81,9 +103,11 @@
 		<Segment
 			caption={segment.caption}
 			on:playaudio={playSegment}
+			on:adjustTime={adjustTime}
 			startTime={segment.start}
 			endTime={segment.end}
-			segmentSprite={"segment"+i}
+			segmentSprite={"segment" + i}
+			segmentIndex={i}
 		/>
 	{/each}
 
