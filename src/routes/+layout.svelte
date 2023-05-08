@@ -118,5 +118,4 @@
 			ADDSEGMENT
 		</button>
 	</div>
-		<slot />
 </div>
