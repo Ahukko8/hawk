@@ -1,3 +1,4 @@
+
 <script>
 	import { Howl, Howler } from "howler";
 	import Segment from "./Segment.svelte";
@@ -117,4 +118,5 @@
 			ADDSEGMENT
 		</button>
 	</div>
+		<slot />
 </div>
