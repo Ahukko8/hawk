@@ -119,4 +119,3 @@
 		</button>
 	</div>
 </div>
-<slot/>
