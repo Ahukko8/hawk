@@ -97,7 +97,7 @@
 </script>
 
 <div class="container">
-	<div>
+	<div class="p-1 mb-2">
 		<button type="button" on:click={playAudio} class="btn btn-outline-success"
 			>{playAudioButtonText}</button
 		>

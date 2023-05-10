@@ -94,7 +94,7 @@
             >
         </div>
     </div>
-    <div class=" mb-2">
+    <div class="row mb-2">
         <div class="col">
             <button type="button" on:click={play} class="btn btn-outline-success"
                 ><i class="bi bi-play"></i></button
