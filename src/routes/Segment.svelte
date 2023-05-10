@@ -7,12 +7,14 @@
     export let segmentIndex;
 
     function formatTime(seconds) {
-        const milliSeconds = Math.floor(1000 * (seconds - Math.floor(seconds)));
-        let hours = seconds / (60 * 60);
+        const wholeSeconds = Math.floor(seconds);
+        const fractionSeconds = seconds - wholeSeconds;
+        const milliSeconds = Math.floor(1000 * fractionSeconds);
+        let hours = wholeSeconds / (60 * 60);
         hours = Math.floor(hours);
-        let minutes = (seconds % (60 * 60)) / 60;
+        let minutes = (wholeSeconds % (60 * 60)) / 60;
         minutes = Math.floor(minutes);
-        const remainingSeconds = seconds % 60;
+        const remainingSeconds = wholeSeconds % 60;
         const hoursStr = hours.toString().padStart(2, "0");
         const minutesStr = minutes.toString().padStart(2, "0");
         const secondsStr = remainingSeconds
@@ -26,6 +28,7 @@
         const time = `${hoursStr}:${minutesStr}:${secondsStr}.${milliSecondsStr}`;
         return time;
     }
+
     const dispatch = createEventDispatcher();
 
     function play() {
@@ -43,50 +46,60 @@
             segmentIndex: segmentIndex,
         });
     }
+
+    function addSegmentAbove() {
+        dispatch("addSegment", {
+            position: segmentIndex
+        })
+    }
+
 </script>
 
-<div class="segment">
-    <div class="row">
+
+<div class="segment container">
+    <div class="row mb-2">
         <div class="col">
             <span>
                 <button
                     type="button"
-                    class="btn btn-success btn-sm"
-                    on:click={() => adjustTime(-0.5, "start")}>-</button
+                    class="btn btn-primary btn-sm"
+                    on:click={() => adjustTime(-0.5, "start")}><i class="bi bi-file-minus"></i></button
                 >
                 <span>{formatTime(startTime)}</span>
                 <button
                     type="button"
-                    class="btn btn-success btn-sm"
-                    on:click={() => adjustTime(0.5, "start")}>+</button
+                    class="btn btn-primary btn-sm"
+                    on:click={() => adjustTime(0.5, "start")}><i class="bi bi-file-plus"></i></button
                 >
                 <span>-</span>
                 <button
                     type="button"
-                    class="btn btn-success btn-sm"
-                    on:click={() => adjustTime(-0.5, "end")}>-</button
+                    class="btn btn-primary btn-sm"
+                    on:click={() => adjustTime(-0.5, "end")}><i class="bi bi-file-minus"></i></button
                 >
                 <span>{formatTime(endTime)}</span>
                 <button
                     type="button"
-                    class="btn btn-success btn-sm"
-                    on:click={() => adjustTime(0.5, "end")}>+</button
+                    class="btn btn-primary btn-sm"
+                    on:click={() => adjustTime(0.5, "end")}><i class="bi bi-file-plus"></i></button
                 >
             </span>
+            <button type="button" class="btn btn-outline-primary float-end btn-sm" on:click={addSegmentAbove}>Add Above</button>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-2">
         <div class="col">
             <textarea placeholder="INPUT TEXT" class="form-control"
                 >{caption}</textarea
             >
         </div>
     </div>
-    <div class="row">
+    <div class=" mb-2">
         <div class="col">
-            <button type="button" on:click={play} class="btn btn-info"
-                >Play</button
+            <button type="button" on:click={play} class="btn btn-outline-success"
+                ><i class="bi bi-play"></i></button
             >
+            <button type="button" class="btn btn-outline-danger btn-sm float-end"><i class="bi bi-trash3"></i></button>
         </div>
     </div>
 </div>

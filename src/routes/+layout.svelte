@@ -1,7 +1,8 @@
-
 <script>
+	import {fade, fly} from "svelte/transition";
 	import { Howl, Howler } from "howler";
 	import Segment from "./Segment.svelte";
+    import { transition_in } from "svelte/internal";
 	let sprites;
 	let sound;
 	let segments = [
@@ -32,15 +33,16 @@
 	];
 
 	function adjustTime(event) {
-		console.log(event);
 		const value = event.detail.value;
 		const position = event.detail.position;
 		const segmentIndex = event.detail.segmentIndex;
-		let updatedValue = segments[segmentIndex][position] + value;
+		const currentSeg = segments[segmentIndex];
+		let updatedValue = currentSeg[position] + value;
 		let updatedStart =
 			position == "start" ? updatedValue : segments[segmentIndex].start;
 		let updatedEnd =
 			position == "end" ? updatedValue : segments[segmentIndex].end;
+		// debugger;
 		if (updatedValue < 0) {
 			updatedValue = 0;
 		}
@@ -57,7 +59,6 @@
 		spr[`segment${index}`] = [segment.start * 1000, segment.end * 1000];
 		return spr;
 	}, {});
-
 	$: sound = new Howl({
 		src: ["/hudhaybiyya.mp3"],
 		sprite: sprites,
@@ -81,14 +82,15 @@
 		sound.play(event.detail.segmentSprite);
 	}
 
-	function addSegment() {
+	function addSegment(event) {
+		const position = event.detail.position;
 		const newSegment = {
 			start: 0,
 			end: 0,
 			caption: "",
 		};
-		segments.push(newSegment);
-		segments = segments;
+		const left = segments.splice(0, position);
+		segments = [...left, newSegment, ...segments];
 	}
 
 	function generateSegments() {}
@@ -96,11 +98,12 @@
 
 <div class="container">
 	<div>
-		<button type="button" on:click={playAudio} class="btn btn-secondary"
+		<button type="button" on:click={playAudio} class="btn btn-outline-success"
 			>{playAudioButtonText}</button
 		>
 	</div>
-	{#each segments as segment, i}
+	{#each segments as segment, i(segment)}
+		<div in:fly="{{ y: 100, duration: 500 }}">
 		<Segment
 			caption={segment.caption}
 			on:playaudio={playSegment}
@@ -109,13 +112,11 @@
 			endTime={segment.end}
 			segmentSprite={"segment" + i}
 			segmentIndex={i}
+			on:addSegment={addSegment}
+			
+			
+			
 		/>
+		</div>
 	{/each}
-
-	<div>
-		<hr />
-		<button type="button" on:click={addSegment} class="btn btn-primary">
-			ADDSEGMENT
-		</button>
-	</div>
 </div>
