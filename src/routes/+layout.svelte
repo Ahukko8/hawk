@@ -96,11 +96,15 @@
 	function generateSegments() {}
 </script>
 
+
+
+
 <div class="container">
 	<div class="p-1 mb-2">
 		<button type="button" on:click={playAudio} class="btn btn-outline-success"
 			>{playAudioButtonText}</button
 		>
+
 	</div>
 	{#each segments as segment, i(segment)}
 		<div in:fly="{{ y: 100, duration: 500 }}">

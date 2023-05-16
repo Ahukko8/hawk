@@ -49,12 +49,10 @@
 
     function addSegmentAbove() {
         dispatch("addSegment", {
-            position: segmentIndex
-        })
+            position: segmentIndex,
+        });
     }
-
 </script>
-
 
 <div class="segment container">
     <div class="row mb-2">
@@ -63,28 +61,42 @@
                 <button
                     type="button"
                     class="btn btn-primary btn-sm"
-                    on:click={() => adjustTime(-0.5, "start")}><i class="bi bi-file-minus"></i></button
+                    on:click={() => adjustTime(-0.5, "start")}
+                    ><i class="bi bi-file-minus" /></button
                 >
                 <span>{formatTime(startTime)}</span>
                 <button
                     type="button"
                     class="btn btn-primary btn-sm"
-                    on:click={() => adjustTime(0.5, "start")}><i class="bi bi-file-plus"></i></button
+                    on:click={() => adjustTime(0.5, "start")}
+                    ><i class="bi bi-file-plus" /></button
                 >
                 <span>-</span>
                 <button
                     type="button"
                     class="btn btn-primary btn-sm"
-                    on:click={() => adjustTime(-0.5, "end")}><i class="bi bi-file-minus"></i></button
+                    on:click={() => adjustTime(-0.5, "end")}
+                    ><i class="bi bi-file-minus" /></button
                 >
                 <span>{formatTime(endTime)}</span>
                 <button
                     type="button"
                     class="btn btn-primary btn-sm"
-                    on:click={() => adjustTime(0.5, "end")}><i class="bi bi-file-plus"></i></button
+                    on:click={() => adjustTime(0.5, "end")}
+                    ><i class="bi bi-file-plus" /></button
                 >
             </span>
-            <button type="button" class="btn btn-outline-primary float-end btn-sm" on:click={addSegmentAbove}>Add Above</button>
+            <button
+                type="button"
+                class="btn btn-outline-danger btn-sm float-end"
+                ><i class="bi bi-trash3" /></button
+            >
+
+            <button
+                type="button"
+                class="btn btn-outline-primary float-end btn-sm"
+                on:click={addSegmentAbove}>Add Above</button
+            >
         </div>
     </div>
     <div class="row mb-2">
@@ -96,10 +108,9 @@
     </div>
     <div class="row mb-2">
         <div class="col">
-            <button type="button" on:click={play} class="btn btn-outline-success"
-                ><i class="bi bi-play"></i></button
+            <button type="button" on:click={play} class="btn btn-success"
+                ><i class="bi bi-play" /></button
             >
-            <button type="button" class="btn btn-outline-danger btn-sm float-end"><i class="bi bi-trash3"></i></button>
         </div>
     </div>
 </div>
