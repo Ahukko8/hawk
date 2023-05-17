@@ -89,9 +89,14 @@
 			start: seg.start,
 			end: seg.end,
 			caption: "",
+			highlighted: true
 		};
-		const left = segments.splice(0, position);
-		segments = [...left, newSegment, ...segments];
+		appendSegment(position, newSegment)
+	}
+
+	function appendSegment(position, data) {
+		const left = segments.splice(0,position);
+		segments = [...left, data, ...segments]
 	}
 
 	function generateSegments() {}
@@ -102,11 +107,20 @@
 		segments = segments
 		console.log(segments, position)
 	}
+
+	function toggleHighlighted(event) {
+		const position = event.detail.position;
+		segments[position].highlighted=false;
+		segments = segments;
+	}
 </script>
 
 
-
-
+{#if segments.length === 0}
+<div class="container">
+<button type="button" on:click={()=>appendSegment(0, {start: 0, end: 0, caption: "", highlighted: true})} class="btn btn-success btn-block">ADD SEGMENT</button>
+</div>
+{:else}
 <div class="container">
 	<div class="p-1 mb-2">
 		<button type="button" on:click={playAudio} class="btn btn-outline-success"
@@ -126,10 +140,13 @@
 			segmentIndex={i}
 			on:addSegment={addSegment}
 			on:deleteSegment={deleteSegment}
+			highlighted={segment.highlighted}
+			on:toggleHighlighted={toggleHighlighted}
 		/>
 
 		</div>
 	{/each}
 </div>
+{/if}
 
 

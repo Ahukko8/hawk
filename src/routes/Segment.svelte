@@ -5,6 +5,7 @@
     export let endTime;
     export let segmentSprite;
     export let segmentIndex;
+    export let highlighted = false;
 
     function formatTime(seconds) {
         const wholeSeconds = Math.floor(seconds);
@@ -58,9 +59,15 @@
             position: segmentIndex,
         });
     }
+
+    setTimeout(function () {
+        dispatch("toggleHighlighted", {
+            position: segmentIndex,
+        });
+    }, 5000);
 </script>
 
-<div class="segment container">
+<div class="segment container" class:highlighted>
     <div class="row mb-2">
         <div class="col">
             <span>
@@ -127,10 +134,15 @@
 <style>
     .segment {
         margin-bottom: 15px;
-        border: 1px solid rgba(0, 0, 0, 0.5);
+        border: 2px solid rgba(0, 0, 0, 0.5);
         padding: 10px;
+        transition: border-color 0.5s ease-in;
     }
     .segment:hover {
         border: 1px solid rgba(0, 0, 0, 0.9);
+    }
+    .highlighted {
+        border-color: blue;
+
     }
 </style>
