@@ -84,9 +84,10 @@
 
 	function addSegment(event) {
 		const position = event.detail.position;
+		const seg = segments[position];
 		const newSegment = {
-			start: 0,
-			end: 0,
+			start: seg.start,
+			end: seg.end,
 			caption: "",
 		};
 		const left = segments.splice(0, position);
@@ -94,6 +95,13 @@
 	}
 
 	function generateSegments() {}
+
+	function deleteSegment(event) {
+		const position = event.detail.position;
+		segments.splice(position, 1);
+		segments = segments
+		console.log(segments, position)
+	}
 </script>
 
 
@@ -107,7 +115,7 @@
 
 	</div>
 	{#each segments as segment, i(segment)}
-		<div in:fly="{{ y: 100, duration: 500 }}">
+		<div in:fly={{ y: 100, duration: 200 }} out:fly={{y:100, duration: 200 }}>
 		<Segment
 			caption={segment.caption}
 			on:playaudio={playSegment}
@@ -117,10 +125,11 @@
 			segmentSprite={"segment" + i}
 			segmentIndex={i}
 			on:addSegment={addSegment}
-			
-			
-			
+			on:deleteSegment={deleteSegment}
 		/>
+
 		</div>
 	{/each}
 </div>
+
+

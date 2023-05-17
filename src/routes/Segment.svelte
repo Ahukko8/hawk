@@ -52,6 +52,12 @@
             position: segmentIndex,
         });
     }
+
+    function deleteSegment() {
+        dispatch("deleteSegment", {
+            position: segmentIndex,
+        });
+    }
 </script>
 
 <div class="segment container">
@@ -86,17 +92,20 @@
                     ><i class="bi bi-file-plus" /></button
                 >
             </span>
-            <button
-                type="button"
-                class="btn btn-outline-danger btn-sm float-end"
-                ><i class="bi bi-trash3" /></button
-            >
 
-            <button
-                type="button"
-                class="btn btn-outline-primary float-end btn-sm"
-                on:click={addSegmentAbove}>Add Above</button
-            >
+            <div class="btn-group float-end" role="group">
+                <button
+                    type="button"
+                    class="btn btn-outline-primary btn-sm"
+                    on:click={addSegmentAbove}>Add Above</button
+                >
+
+                <button
+                    type="button"
+                    class="btn btn-outline-danger btn-sm"
+                    on:click={deleteSegment}><i class="bi bi-trash3" /></button
+                >
+            </div>
         </div>
     </div>
     <div class="row mb-2">
