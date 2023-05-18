@@ -175,7 +175,7 @@
     .custom-play-btn {
         background-color: #6C0BA9;
         border: none;
-        color: #fffdd0;
+        color: #ffffff;
         text-align: center;
         text-decoration: none;
         display: inline-block;
