@@ -118,7 +118,7 @@
 
 {#if segments.length === 0}
 <div class="container">
-<button type="button" on:click={()=>appendSegment(0, {start: 0, end: 0, caption: "", highlighted: true})} class="btn btn-success btn-block">ADD SEGMENT</button>
+<button type="button" on:click={()=>appendSegment(0, {start: 0, end: 0, caption: "", highlighted: true})} class="btn custom-play-btn btn-block p-3 m-3">ADD SEGMENT</button>
 </div>
 {:else}
 <div class="container">
