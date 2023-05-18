@@ -73,28 +73,28 @@
             <span>
                 <button
                     type="button"
-                    class="btn btn-primary btn-sm"
+                    class="btn custom-btn btn-sm"
                     on:click={() => adjustTime(-0.5, "start")}
                     ><i class="bi bi-file-minus" /></button
                 >
                 <span>{formatTime(startTime)}</span>
                 <button
                     type="button"
-                    class="btn btn-primary btn-sm"
+                    class="btn custom-btn btn-sm"
                     on:click={() => adjustTime(0.5, "start")}
                     ><i class="bi bi-file-plus" /></button
                 >
                 <span>-</span>
                 <button
                     type="button"
-                    class="btn btn-primary btn-sm"
+                    class="btn custom-btn btn-sm"
                     on:click={() => adjustTime(-0.5, "end")}
                     ><i class="bi bi-file-minus" /></button
                 >
                 <span>{formatTime(endTime)}</span>
                 <button
                     type="button"
-                    class="btn btn-primary btn-sm"
+                    class="btn custom-btn btn-sm"
                     on:click={() => adjustTime(0.5, "end")}
                     ><i class="bi bi-file-plus" /></button
                 >
@@ -103,13 +103,13 @@
             <div class="btn-group float-end" role="group">
                 <button
                     type="button"
-                    class="btn btn-outline-primary btn-sm"
+                    class="btn custom-btn btn-sm"
                     on:click={addSegmentAbove}>Add Above</button
                 >
 
                 <button
                     type="button"
-                    class="btn btn-outline-danger btn-sm"
+                    class="btn custom-btn btn-sm"
                     on:click={deleteSegment}><i class="bi bi-trash3" /></button
                 >
             </div>
@@ -124,7 +124,7 @@
     </div>
     <div class="row mb-2">
         <div class="col">
-            <button type="button" on:click={play} class="btn btn-success"
+            <button type="button" on:click={play} class="btn custom-play-btn"
                 ><i class="bi bi-play" /></button
             >
         </div>
@@ -134,15 +134,59 @@
 <style>
     .segment {
         margin-bottom: 15px;
-        border: 2px solid rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(0, 0, 0, 0.5);
         padding: 10px;
         transition: border-color 0.5s ease-in;
     }
     .segment:hover {
-        border: 1px solid rgba(0, 0, 0, 0.9);
+        border: 2px solid #6c0ba9;;
     }
     .highlighted {
-        border-color: blue;
-
+        border-color: #A020F0
     }
+
+    /*Delete button custom styles*/
+    .custom-btn {
+        background-color: #ffffff;
+        border: 1px solid #6c0ba9;
+        color: #6c0ba9;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    .custom-btn:hover {
+        background-color: #880ED4;
+        border: none;
+        color: #fffbb4;
+        /* padding: 15px 32px; */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    .custom-play-btn {
+        background-color: #6C0BA9;
+        border: none;
+        color: #fffdd0;
+        /* padding: 15px 32px; */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    .custom-play-btn:hover {
+        background-color: #51087E;
+        border: none;
+        color: #ffffff;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+
 </style>

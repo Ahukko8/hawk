@@ -123,7 +123,7 @@
 {:else}
 <div class="container">
 	<div class="p-1 mb-2">
-		<button type="button" on:click={playAudio} class="btn btn-outline-success"
+		<button type="button" on:click={playAudio} class="btn custom-play-btn"
 			>{playAudioButtonText}</button
 		>
 
@@ -148,5 +148,29 @@
 	{/each}
 </div>
 {/if}
+
+<style>
+
+.custom-play-btn {
+        background-color: #6C0BA9;
+        border: none;
+        color: #fffdd0;
+        /* padding: 15px 32px; */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    .custom-play-btn:hover {
+        background-color: #51087E;
+        border: none;
+        color: #ffffff;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+</style>
 
 
