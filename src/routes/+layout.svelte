@@ -157,7 +157,7 @@
 .custom-play-btn {
         background-color: #6C0BA9;
         border: none;
-        color: #fffdd0;
+        color: #ffffff;
         /* padding: 15px 32px; */
         text-align: center;
         text-decoration: none;
