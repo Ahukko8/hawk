@@ -1,4 +1,6 @@
+<!-- Javascript -->
 <script>
+    /**Importing necessary dependancies & exporting  global variables*/
     import { createEventDispatcher } from "svelte";
     export let caption;
     export let startTime;
@@ -7,6 +9,7 @@
     export let segmentIndex;
     export let highlighted = false;
 
+    /**function to format the time display format*/
     function formatTime(seconds) {
         const wholeSeconds = Math.floor(seconds);
         const fractionSeconds = seconds - wholeSeconds;
@@ -39,6 +42,7 @@
         });
     }
 
+
     function adjustTime(value, position) {
         dispatch("adjustTime", {
             position: position,
@@ -67,6 +71,7 @@
     }, 5000);
 </script>
 
+<!-- html -->
 <div class="segment container" class:highlighted>
     <div class="row mb-2">
         <div class="col">
@@ -131,10 +136,11 @@
     </div>
 </div>
 
+<!-- CSS Custom Styles -->
 <style>
     .segment {
         margin-bottom: 15px;
-        border: 1px solid rgba(0, 0, 0, 0.5);
+        border: 1px solid #C576F6;
         padding: 10px;
         transition: border-color 0.5s ease-in;
     }
@@ -142,10 +148,10 @@
         border: 2px solid #6c0ba9;;
     }
     .highlighted {
-        border-color: #A020F0
+        border: 2px solid #1b0965;
     }
 
-    /*Delete button custom styles*/
+    /*button custom styles*/
     .custom-btn {
         background-color: #ffffff;
         border: 1px solid #6c0ba9;
@@ -159,8 +165,7 @@
     .custom-btn:hover {
         background-color: #880ED4;
         border: none;
-        color: #fffbb4;
-        /* padding: 15px 32px; */
+        color: #fefef0;
         text-align: center;
         text-decoration: none;
         display: inline-block;
@@ -171,7 +176,6 @@
         background-color: #6C0BA9;
         border: none;
         color: #fffdd0;
-        /* padding: 15px 32px; */
         text-align: center;
         text-decoration: none;
         display: inline-block;

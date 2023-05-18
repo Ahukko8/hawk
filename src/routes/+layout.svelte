@@ -1,7 +1,9 @@
+<!-- javaScript -->
 <script>
-	import {fade, fly} from "svelte/transition";
-	import { Howl, Howler } from "howler";
-	import Segment from "./Segment.svelte";
+	// importing dependancies
+	import {fade, fly} from "svelte/transition"; //for animation
+	import { Howl, Howler } from "howler"; //for sound
+	import Segment from "./Segment.svelte"; 
     import { transition_in } from "svelte/internal";
 	let sprites;
 	let sound;
@@ -115,10 +117,10 @@
 	}
 </script>
 
-
+<!-- html -->
 {#if segments.length === 0}
 <div class="container">
-<button type="button" on:click={()=>appendSegment(0, {start: 0, end: 0, caption: "", highlighted: true})} class="btn custom-play-btn btn-block p-3 m-3">ADD SEGMENT</button>
+<button type="button"  on:click={()=>appendSegment(0, {start: 0, end: 0, caption: "", highlighted: true})} class="btn custom-play-btn btn-block p-3 m-3">ADD SEGMENT</button>
 </div>
 {:else}
 <div class="container">
@@ -149,8 +151,9 @@
 </div>
 {/if}
 
-<style>
 
+<!-- CSS styles -->
+<style>
 .custom-play-btn {
         background-color: #6C0BA9;
         border: none;
