@@ -1,4 +1,3 @@
-<!-- Javascript -->
 <script>
     /**Importing necessary dependancies & exporting  global variables*/
     import { createEventDispatcher } from "svelte";
