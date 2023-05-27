@@ -4,6 +4,9 @@ import {
 import {
   svelte
 } from '@sveltejs/vite-plugin-svelte'
+import {
+  resolve
+} from "path"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,6 +16,11 @@ export default defineConfig({
       output: {
         entryFileNames: "dist.js",
       }
+    },
+    lib: {
+      entry: resolve(__dirname, "src/main"),
+      name:"Components",
+      fileName: "dist",
     }
   }
 })

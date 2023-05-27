@@ -1,6 +1,7 @@
 import './app.css'
 import App from './App.svelte'
 
+
 // const app = new App({
 //   target: document.getElementById('app'),
 //   props: {
@@ -8,4 +9,4 @@ import App from './App.svelte'
 //   }
 // })
 
-export default App
+export {App}
