@@ -36,7 +36,10 @@
 
 	$: if (segments)
 		sprites = segments.reduce((spr, segment, index) => {
-			spr[`segment${index}`] = [segment.start * 1000, segment.end * 1000];
+			spr[`segment${index}`] = [
+				segment.start * 1000,
+				(segment.end - segment.start) * 1000,
+			];
 			return spr;
 		}, {});
 	$: if (segments)
